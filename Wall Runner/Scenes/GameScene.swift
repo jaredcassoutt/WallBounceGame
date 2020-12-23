@@ -27,6 +27,8 @@ class GameScene: SKScene {
     let coinsLabel = SKLabelNode(text: "\(UserDefaults.standard.integer(forKey: ScoreData.coins))")
     
     var background = SKSpriteNode(imageNamed: Images.background)
+    var noNotchSubStore:CGFloat = 0
+    var noNotchSub:CGFloat = 0
     
     var timer: Timer?
     var didTouch = false
@@ -39,6 +41,9 @@ class GameScene: SKScene {
     var timers = [Timer?]()
     
     override func didMove(to view: SKView) {
+        if Screen.hasNotch == false {
+            noNotchSubStore = 8
+        }
         addChild(worldNode)
         setUpPhysics()
         spawnView()
@@ -110,7 +115,7 @@ class GameScene: SKScene {
     
     func spawnPauseButton() {
         pauseShape = SKShapeNode(rectOf: CGSize(width: 30, height: 30), cornerRadius: 15)
-        pauseShape.position = CGPoint(x: frame.maxX-45, y: frame.maxY-30)
+        pauseShape.position = CGPoint(x: frame.maxX-45+noNotchSubStore, y: frame.maxY-30)
         pauseShape.fillColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.8)
         pauseShape.zPosition = 3
         pauseShape.name = Images.pause

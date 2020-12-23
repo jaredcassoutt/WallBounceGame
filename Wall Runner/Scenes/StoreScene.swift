@@ -42,7 +42,7 @@ class StoreScene: SKScene, Alertable {
     
     override func didMove(to view: SKView) {
         if Screen.hasNotch == false {
-            noNotchSubStore = 5
+            noNotchSubStore = 8
         }
         createBackground()
         addLogoAndShop()
